@@ -36,9 +36,8 @@ def download_data(target_dir_pth: Path,
     print(f"[INFO] Done")
 
 
-def download_zip_data(source_path: str,
-                      target_path: Path, 
-                      remove_source: bool = True):
+def download_zip_data(source: str,
+                      target_path: Path):
    """
     Download and unzip zip files
 
@@ -52,10 +51,9 @@ def download_zip_data(source_path: str,
       print(f"[INFO] Target directory do not exist...")
       return 
    else: 
-      print(f"[INFO] Downloading zip file {source_path} ...")
-      with zipfile.ZipFile(source_path, "r") as r:
+      print(f"[INFO] Downloading zip file {source} ...")
+      with zipfile.ZipFile(source, "r") as r:
          r.extractall(target_path)
-         print(f"Done")
 
 
 def create_dataloaders(
