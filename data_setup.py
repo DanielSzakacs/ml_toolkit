@@ -18,13 +18,14 @@ def download_data(target_dir_pth: Path,
                   data_source_pth: str):
   """
     Used to download files (Ex: csv) 
-    Params:
+    
+    Args:
       target_dir_pth: Path where the file will be downloaded to
       data_source_pth: String which the path to the data (Ex: https://raw.githubusercontent.com/DanielSzakacs/dogImages/main/labels.csv)
   """
 
   # Check is the target directory is exist
-  if target_dir_pth.is_dir():
+  if target_dir_pth.is_dir() is False:
     print(f"[ERROR] Target directory do not exist")
     return
   else: 
@@ -33,6 +34,30 @@ def download_data(target_dir_pth: Path,
       request = requests.get(data_source_pth)
       f.write(request.content)
     print(f"[INFO] Done")
+
+def download_zip_data(source_path: Path,
+                      target_path: Path, 
+                      remove_source: bool = True):
+   """
+    Download and unzip zip files
+
+    Args: 
+        source_path: (Path) Ex: /content/drive/MyDrive/Pytorch course/Dog_recognizer/data/train_zip.zip
+        target_path: (Path) Where the zip file will be unzipped
+        remove_source: (Boolean) Remove the downloaded zip file. 
+   """
+    # Check is the target dir is exits
+   if target_path.is_dir() == False:
+      print(f"[INFO] Target directory do not exist...")
+      return 
+   else: 
+      print(f"[INFO] Downloading zip file {source_path} ...")
+      with zipfile.ZipFile(source_path, "r") as r:
+         r.extractall(target_path)
+         print(f"Done")
+      
+      
+   
 
 def download_zip_data(source: str,
                   destination: str,
