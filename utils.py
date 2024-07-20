@@ -6,6 +6,7 @@ from pathlib import Path
 from torch import utils
 from torch.utils import tensorboard 
 from torch.utils.tensorboard import SummaryWriter
+from torchinfo import summary
 
 
 def model_summary(model, 
