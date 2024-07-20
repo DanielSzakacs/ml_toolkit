@@ -35,7 +35,8 @@ def download_data(target_dir_pth: Path,
       f.write(request.content)
     print(f"[INFO] Done")
 
-def download_zip_data(source_path: Path,
+
+def download_zip_data(source_path: str,
                       target_path: Path, 
                       remove_source: bool = True):
    """
@@ -55,55 +56,6 @@ def download_zip_data(source_path: Path,
       with zipfile.ZipFile(source_path, "r") as r:
          r.extractall(target_path)
          print(f"Done")
-      
-      
-   
-
-def download_zip_data(source: str,
-                  destination: str,
-                  remove_source: bool = True) -> Path:
-    """Downloads a zipped dataset from source and unzips to destination.
-
-    Args:
-        source (str): A link to a zipped file containing data.
-        destination (str): A target directory to unzip data to.
-        remove_source (bool): Whether to remove the source after downloading and extracting.
-
-    Returns:
-        pathlib.Path to downloaded data.
-
-    Example usage:
-        download_data(source="https://github.com/mrdbourke/pytorch-deep-learning/raw/main/data/pizza_steak_sushi.zip",
-                      destination="pizza_steak_sushi")
-    """
-    # Setup path to data folder
-    data_path = Path("data/")
-    image_path = data_path / destination
-
-    # If the image folder doesn't exist, download it and prepare it...
-    if image_path.is_dir():
-        print(f"[INFO] {image_path} directory exists, skipping download.")
-    else:
-        print(f"[INFO] Did not find {image_path} directory, creating one...")
-        image_path.mkdir(parents=True, exist_ok=True)
-
-        # Download data
-        target_file = Path(source).name
-        with open(data_path / target_file, "wb") as f:
-            request = requests.get(source)
-            print(f"[INFO] Downloading {target_file} from {source}...")
-            f.write(request.content)
-
-        # Unzip data
-        with zipfile.ZipFile(data_path / target_file, "r") as zip_ref:
-            print(f"[INFO] Unzipping {target_file} data...")
-            zip_ref.extractall(image_path)
-
-        # Remove .zip file
-        if remove_source:
-            os.remove(data_path / target_file)
-
-    return image_path
 
 
 def create_dataloaders(
