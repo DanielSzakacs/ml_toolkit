@@ -14,6 +14,25 @@ import requests
 
 NUM_WORKERS = os.cpu_count()
 
+def download_data(target_dir_pth: Path, 
+                  data_source_pth: str):
+  """
+    Used to download files (Ex: csv) 
+    Params:
+      target_dir_pth: Path where the file will be downloaded to
+      data_source_pth: String which the path to the data (Ex: https://raw.githubusercontent.com/DanielSzakacs/dogImages/main/labels.csv)
+  """
+
+  # Check is the target directory is exist
+  if target_dir_pth.is_dir():
+    print(f"[ERROR] Target directory do not exist")
+    return
+  else: 
+    print(f"[INFO] Download data from {data_source_pth}")
+    with open(target_dir_pth, "wb") as f: 
+      request = requests.get(data_source_pth)
+      f.write(request.content)
+    print(f"[INFO] Done")
 
 def download_zip_data(source: str,
                   destination: str,
