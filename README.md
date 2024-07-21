@@ -22,3 +22,8 @@ except:
     # Get the going_modular scripts
     print("[INFO] Couldn't find ml_toolkit scripts... downloading them from GitHub.")
     !git clone https://github.com/DanielSzakacs/ml_toolkit -->
+
+<!--
+TO VIEW THE result
+%load_ext tensorboard
+%tensorboard --logdir runs -->
