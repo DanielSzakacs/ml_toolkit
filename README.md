@@ -2,6 +2,16 @@
 
 Before all to import the ml_toolkit and to import the torchinfo
 
+<!-- Main points:
+1. Download the helper functions from the github
+2. Download the data
+3. Restructure the data (for the model)
+4. Create a DataSet and DataLoader
+5. Getting a pre-trained model
+6. Freeze the base layer and changing the classifier head
+7. Train the model
+8. View the model results -->
+
 <!-- import torch
 import torchvision
 from torch import nn
