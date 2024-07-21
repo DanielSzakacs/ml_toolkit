@@ -199,7 +199,7 @@ def train(model: torch.nn.Module,
     return results
 
 # Add writer parameter to train()
-def train(model: torch.nn.Module,
+def train_with_writer(model: torch.nn.Module,
           train_dataloader: torch.utils.data.DataLoader,
           test_dataloader: torch.utils.data.DataLoader,
           optimizer: torch.optim.Optimizer,
